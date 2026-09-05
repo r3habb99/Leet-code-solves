@@ -36,4 +36,15 @@ There are no more pairs that sum up to 6, hence a total of 1 operation.</pre>
 
 ---
 
-Error connecting to AI API: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+# 🛍️ Max-Number-Of-K-Sum-Pairs | Explained
+
+## Approach 1: Single-Pass Hash Map (Frequency Matching)
+
+### Intuition
+Imagine you are running a coat check at an event where every attendee has a numbered token, and you need to pair people up whose tokens sum to exactly $k$. 
+
+As each person arrives with their token `num`, you immediately calculate what partner token they need: `target = k - num`. Instead of searching through the entire room of future arrivals, you look at your desk where you keep track of un-paired tokens seen so far. 
+- If a token equal to `target` is sitting on your desk, you immediately pair them up, remove that matching token from your desk (decrement count), and count one successful operation.
+- If no matching `target` is waiting, this person cannot pair up yet. You place their token `num` on the desk (increment count) so a future attendee can potentially pair with them.
+
+Because pairs are consumed greedily upon the first viable match, no element
